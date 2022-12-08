@@ -1,7 +1,12 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:rafaheduapp/auth.dart';
 import 'package:rafaheduapp/screens/login_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -35,7 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body:
-          LoginScreen(), // This trailing comma makes auto-formatting nicer for build methods.
+          Auth(), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
