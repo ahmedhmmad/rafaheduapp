@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "954810824353",
+    "project_id": "rafahedu-94f1d",
+    "storage_bucket": "rafahedu-94f1d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:954810824353:android:e1f3097df883c70db462e0",
+        "android_client_info": {
+          "package_name": "com.example.rafaheduapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "954810824353-ghnfu5qhkt9vr54g4bjgnnghdhr77vck.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbjoqfmoOszAf71yoAF_wFjfwCzn-fECg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "954810824353-ghnfu5qhkt9vr54g4bjgnnghdhr77vck.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
