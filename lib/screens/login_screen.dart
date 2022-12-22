@@ -1,7 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
+import 'package:rafaheduapp/main.dart';
+import 'package:rafaheduapp/screens/signup_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -16,6 +19,12 @@ class _LoginScreenState extends State<LoginScreen> {
   final _passwordController = TextEditingController();
 
   Future<void> signIn() async {
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => const Center(
+              child: CircularProgressIndicator(),
+            ));
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: _emailController.text.trim(),
@@ -49,6 +58,8 @@ class _LoginScreenState extends State<LoginScreen> {
         print('Wrong password provided for that user.');
       }
     }
+    Navigator.of(context).pop();
+    // navigatorKey.currentState!.popUntil((route) => route.isFirst);
   }
 
   @override
@@ -158,8 +169,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       if (_formKey.currentState!.validate()) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
-                              duration: Duration(milliseconds: 500),
-                              backgroundColor: Colors.pinkAccent,
+                              duration: Duration(milliseconds: 300),
+                              backgroundColor:
+                                  Color.fromARGB(255, 242, 200, 214),
                               content: Text(
                                 ' يتم التحقق من البيانات',
                                 style: TextStyle(
@@ -190,28 +202,50 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(
                   height: 20,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  textDirection: TextDirection.rtl,
-                  children: [
-                    Text(
-                      'إذا لم تكن عضواً فيمكنك',
-                      style: GoogleFonts.cairo(
-                        color: Colors.black,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w300,
-                      ),
-                    ),
-                    Text(
-                      'التسجيل',
-                      style: GoogleFonts.cairo(
-                          color: Colors.green,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w300),
-                    ),
-                  ],
-                )
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.center,
+                //   textDirection: TextDirection.rtl,
+                //   children: [
+                //     Text(
+                //       'إذا لم تكن عضواً فيمكنك',
+                //       style: GoogleFonts.cairo(
+                //         color: Colors.black,
+                //         fontSize: 14,
+                //         fontWeight: FontWeight.w300,
+                //       ),
+                //     ),
+                //     Text(
+                //       'التسجيل',
+                //       style: GoogleFonts.cairo(
+                //           color: Colors.green,
+                //           fontSize: 16,
+                //           fontWeight: FontWeight.w300),
+                //     ),
+                //   ],
+                // )
                 //sign up text
+                RichText(
+                    text: TextSpan(
+                        style: GoogleFonts.cairo(
+                            color: Colors.black,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w300),
+                        text: 'إذا لم تكن عضواً يمكنك ',
+                        children: [
+                      TextSpan(
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            Navigator.of(context)
+                                .pushReplacementNamed('SignUpScreen');
+                          },
+                        style: GoogleFonts.cairo(
+                            color: Colors.teal,
+                            decoration: TextDecoration.underline,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w300),
+                        text: 'التسجيل',
+                      )
+                    ]))
               ],
             ),
           ),
